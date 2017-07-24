@@ -121,6 +121,14 @@
                         name: '标题',
                         key: 'Title'
                     }, {
+                        name: 'NoKey',
+                    }, {
+                        name: 'Empty',
+                        key: 'Empty'
+                    }, {
+                        name: 'Null',
+                        key: 'Null'
+                    }, {
                         name: '时间',
                         key: 'CreateDate',
                         format: function(value) {
@@ -165,6 +173,8 @@
                         var item = {};
                         item.InfoID = id;
                         item.Title = "Title " + id;
+                        item.Empty = '';
+                        item.Null = null;
                         item.CreateDate = new Date();
                         item.Status = 1;
                         $scope.list.push(item);

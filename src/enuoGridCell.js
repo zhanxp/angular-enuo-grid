@@ -18,12 +18,14 @@ angular.module('enuo.grid')
                             }
                             return eval("(" + func + ")");
                         }
+
                         var value = $scope.item[$scope.column.key];
-                        if (!value) {
-                            value = $scope.column.name;
-                        }
                         if ($scope.column.format) {
                             value = getFunc($scope.column.format)(value, $scope.item);
+                        } else if (value === undefined) {
+                            value = $scope.column.name;
+                        } else if (value === null) {
+                            value = '';
                         }
 
                         if ($scope.column.template == 'add') {
@@ -35,7 +37,7 @@ angular.module('enuo.grid')
                         } else if ($scope.column.template) {
                             $elm.append(getFunc($scope.column.template)(value, $scope.item));
                         } else {
-                            $elm.append(value);
+                            $elm.append(value + '');
                         }
                     },
                     post: function($scope, $elm, $attrs) {

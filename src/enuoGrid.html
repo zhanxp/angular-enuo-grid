@@ -1,0 +1,72 @@
+<div class="enuo-grid">
+    <div class="box-tool clearfix">
+        <div class="btn-group" ng-if="config.tool">
+            <button ng-repeat="item in config.tool.items" type="button" ng-click="item.click(selectedList)" class="btn btn-default" ng-class="item.cssClass">
+                <i ng-class="item.icon"></i> {{item.name}}
+            </button>
+        </div>
+        <div class="pull-right" ng-if="config.query">
+            <form class="form-inline">
+                <div class="input-group">
+                    <div class="pull-left" ng-repeat="item in config.query.items">
+                        <div ng-if="item.type=='select'" class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                 {{ item.display }} 
+                                 <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="option in item.options" ng-click="fnSelectQuery(option,item)">
+                                    <a>{{option.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <input ng-if="item.type=='input'" type="text" ng-model="item.value" class="form-control" placeholder="{{item.placeholder}}" />
+                        <input ng-if="item.type=='hideen'" type="hidden" ng-model="item.value" />
+                    </div>
+                    <span class="input-group-btn pull-left">
+                        <button type="submit" ng-click="fnQuery()" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-search"></i>
+                            {{config.query.action.title || '搜索'}}
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th style="width:10px;"><input type="checkbox" ng-model="checkAll" ng-click="fnCheckAll()"></th>
+                <th ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}">{{column.name}}</th>
+            </tr>
+        </thead>
+        <tbody ng-if="!config.loading && gridSource.length > 0">
+            <tr ng-repeat="item in gridSource" ng-click="fnCheckItem(item)">
+                <td>
+                    <input type="checkbox" ng-checked="fnItemChecked(item)">
+                </td>
+                <td ng-repeat="column in config.columns">
+                    <enuo-grid-cell column="column" item="item"></enuo-grid-cell>
+                </td>
+            </tr>
+        </tbody>
+        <tbody ng-if="!config.loading && gridSource.length <= 0">
+            <tr>
+                <td colspan="{{config.columns.length + 1}}">
+                    <empty-result></empty-result>
+                </td>
+            </tr>
+        </tbody>
+        <tbody ng-if="config.loading">
+            <tr>
+                <td colspan="{{config.columns.length + 1}}">
+                    <empty-result em-style="loading"></empty-result>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="box-footer" ng-if="config.page">
+        <paging page="config.page.pageIndex" class="pull-right paging" page-size="config.page.pageSize" total="config.page.total" paging-action="config.page.callback(page)" show-prev-next="true" show-first-last="true">
+        </paging>
+    </div>
+</div>

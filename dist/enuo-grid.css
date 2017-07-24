@@ -1,0 +1,21 @@
+.enuo-grid .table {
+  margin-bottom: 0; }
+
+.enuo-grid .box-tool,
+.enuo-grid .box-footer {
+  padding: 2px;
+  min-height: 38px;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  background: linear-gradient(to bottom, #f8f8f8 0%, #efefef 100%); }
+
+.enuo-grid .box-tool {
+  border-bottom: none; }
+
+.enuo-grid .box-footer {
+  border-top: none; }
+
+.enuo-grid .box-footer .paging {
+  height: 34px; }
+  .enuo-grid .box-footer .paging .pagination {
+    margin: 0; }

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit" />
+    <title>enuo grid test</title>
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css" />
+</head>
+
+<body ng-app="app" ng-controller="TestController">
+    <nav class="navbar navbar-inverse ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="#">angular enuo grid</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="starter-template">
+            <h1>angular enuo grid</h1>
+            <p class="lead">a grid table with angular 1x and bootstrap.</p>
+        </div>
+
+
+        <enuo-grid config="gridConfig" grid-source="list"></enuo-grid>
+
+    </div>
+
+    </div>
+    <!-- /.container -->
+
+    <script src="./bower_components/jquery/dist/jquery.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="./bower_components/angular/angular.js"></script>
+    <link rel="stylesheet" href="./dist/enuo-grid.css" />
+    <script src="./dist/enuo-grid.js"></script>
+    <script type="text/javascript">
+        angular.module('app', ['enuo.grid'])
+            .controller("TestController", ['$scope', '$filter', function($scope, $filter) {
+                $scope.list = [];
+                $scope.gridConfig = {
+                    pkid: 'InfoID',
+                    loading: true,
+                    page: {
+                        pageIndex: 1,
+                        pageSize: 10,
+                        total: 10,
+                        callback: function(page) {
+                            $scope.loadData(page);
+                        },
+                    },
+                    query: {
+                        action: {
+                            callback: function(query) {
+                                $scope.loadData();
+                            }
+                        },
+                        items: [{
+                            key: 'Status',
+                            value: 1,
+                        }, {
+                            key: 'ClassID',
+                            type: 'select',
+                            display: '全部分类',
+                            value: '',
+                            options: [{
+                                name: '分类1',
+                                value: 1
+                            }, {
+                                name: '分类2',
+                                value: 2
+                            }],
+                        }, {
+                            key: 'Title',
+                            type: 'input',
+                            value: '',
+                            placeholder: '请输入关键字'
+                        }]
+                    },
+                    tool: {
+                        items: [{
+                            name: '添加',
+                            icon: 'ion-plus-round',
+                            cssClass: 'text-green',
+                            click: function(selectItems) {
+                                $scope.fnShowFrom();
+                            }
+                        }, {
+                            name: '删除',
+                            icon: 'ion-trash-a',
+                            cssClass: 'text-red',
+                            click: function(selectItems) {
+                                $scope.fnUpdateStatus(selectItems);
+                            }
+                        }, {
+                            name: '刷新',
+                            icon: 'ion-loop',
+                            cssClass: 'text-light-blue',
+                            click: function(selectItems) {
+                                $scope.loadData();
+                            }
+                        }, ]
+                    },
+                    columns: [{
+                        name: '标题',
+                        key: 'Title'
+                    }, {
+                        name: '时间',
+                        key: 'CreateDate',
+                        format: function(value) {
+                            return $filter('date')(value, 'yyyy-MM-dd');
+                        }
+                    }, {
+                        name: '修改',
+                        width: '100px',
+                        template: 'edit',
+                        click: function(value, item) {
+                            $scope.fnShowFrom(item);
+                        }
+                    }, {
+                        name: '删除',
+                        width: '100px',
+                        template: 'delete',
+                        format: function(value, item) {
+                            return item.Status == 1 ? "删除" : "还原";
+                        },
+                        click: function(value, item) {
+                            var ids = [];
+                            ids.push(item.InfoID);
+                            $scope.fnUpdateStatus(ids);
+                        }
+                    }]
+                };
+
+                $scope.loadData = function(page) {
+                    var query = {};
+                    angular.forEach($scope.gridConfig.query.items, function(data, index, array) {
+                        query[data.key] = data.value;
+                    });
+                    console.log(query);
+
+                    page = page || $scope.gridConfig.page.pageIndex;
+
+                    $scope.gridConfig.loading = true;
+
+                    $scope.list = [];
+                    for (var i = 0; i < 10; i++) {
+                        var id = (page - 1) * 10 + i;
+                        var item = {};
+                        item.InfoID = id;
+                        item.Title = "Title " + id;
+                        item.CreateDate = new Date();
+                        item.Status = 1;
+                        $scope.list.push(item);
+                    }
+                    $scope.gridConfig.page.total = 100;
+
+                    $scope.gridConfig.loading = false;
+                }
+
+                $scope.fnUpdateStatus = function(ids) {
+                    console.log("del " + ids.join(','));
+                };
+
+                $scope.fnShowFrom = function(item) {
+                    if (item) {
+                        console.log(item);
+                    } else {
+                        console.log('add');
+                    }
+                };
+
+                $scope.loadData();
+
+            }]);
+    </script>
+</body>
+
+</html>

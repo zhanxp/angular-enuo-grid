@@ -71,9 +71,9 @@ gulp.task('serve', ['watch'], function() {
     browserSync.instance = browserSync.init({
         startPath: '/test.html',
         server: server,
-        port: 3010,
+        port: 3013,
         ui: {
-            port: 3011
+            port: 3014
         },
         browser: 'default',
         ghostMode: false

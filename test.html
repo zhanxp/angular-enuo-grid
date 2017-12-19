@@ -57,6 +57,11 @@
                 $scope.gridConfig = {
                     //pkid: 'InfoID',
                     loading: true,
+                    style: {
+                        contentStyle: {
+                            height: '200px'
+                        },
+                    },
                     page: {
                         pageIndex: 1,
                         pageSize: 10,
@@ -189,6 +194,7 @@
                 };
 
                 $scope.fnShowFrom = function(item) {
+                    // $scope.gridConfig.style.contentStyle.height = '300px';
                     if (item) {
                         console.log(item);
                     } else {

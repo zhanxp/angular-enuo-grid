@@ -11,6 +11,7 @@ angular.module('enuo.grid')
             controller: function($scope, $element, $attrs) {
                 $scope.selectedList = [];
                 $scope.checkAll = false;
+                $scope.contentStyle = $scope.config.style ? $scope.config.style.contentStyle : {};
                 $scope.fnItemChecked = function(item) {
                     var value = item[$scope.config.pkid];
                     return $scope.selectedList.indexOf(value) > -1;

@@ -1,13 +1,30 @@
 .enuo-grid {
     .table {
         margin-bottom: 0;
+        tbody {
+            display: block;
+            overflow-y: scroll;
+        }
+        thead,
+        tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+        thead {
+            width: calc( 100% - 1em)
+        }
+        td,
+        th {
+            border-left: none;
+            border-top: none;
+        }
     }
     .box-tool,
     .box-footer {
         padding: 2px;
         min-height: 38px;
         border: 1px solid #ddd;
-        border-bottom: none;
         background: linear-gradient(to bottom, #f8f8f8 0%, #efefef 100%);
     }
     .box-tool {

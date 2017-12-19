@@ -5,7 +5,7 @@
                 <i ng-class="item.icon"></i> {{item.name}}
             </button>
         </div>
-        <div class="pull-right" ng-if="config.query">
+        <div class="pull-right" ng-if="config.query && config.query.items.length > 0">
             <form class="form-inline">
                 <div class="input-group">
                     <div class="pull-left" ng-repeat="item in config.query.items">
@@ -40,32 +40,32 @@
                 <th ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}">{{column.name}}</th>
             </tr>
         </thead>
-        <tbody ng-if="!config.loading && gridSource.length > 0">
+        <tbody ng-style="contentStyle" ng-if="!config.loading && gridSource.length > 0">
             <tr ng-repeat="item in gridSource" ng-click="fnCheckItem(item)">
                 <td ng-if="config.pkid">
                     <input type="checkbox" ng-checked="fnItemChecked(item)">
                 </td>
-                <td ng-repeat="column in config.columns">
+                <td ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}">
                     <enuo-grid-cell column="column" item="item"></enuo-grid-cell>
                 </td>
             </tr>
         </tbody>
-        <tbody ng-if="!config.loading && gridSource.length <= 0">
+        <tbody ng-style="contentStyle" ng-if="!config.loading && gridSource.length <= 0">
             <tr>
                 <td ng-if="config.pkid">
-                </id>
-                <td colspan="{{config.columns.length }}">
-                    <empty-result></empty-result>
-                </td>
+                    </id>
+                    <td colspan="{{config.columns.length }}">
+                        <empty-result></empty-result>
+                    </td>
             </tr>
         </tbody>
-        <tbody ng-if="config.loading">
+        <tbody ng-style="contentStyle" ng-if="config.loading">
             <tr>
                 <td ng-if="config.pkid">
-                </id>
-                <td colspan="{{config.columns.length }}">
-                    <empty-result em-style="loading"></empty-result>
-                </td>
+                    </id>
+                    <td colspan="{{config.columns.length }}">
+                        <empty-result em-style="loading"></empty-result>
+                    </td>
             </tr>
         </tbody>
     </table>

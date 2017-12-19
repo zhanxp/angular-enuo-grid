@@ -1,12 +1,25 @@
 .enuo-grid .table {
   margin-bottom: 0; }
+  .enuo-grid .table tbody {
+    display: block;
+    overflow-y: scroll; }
+  .enuo-grid .table thead,
+  .enuo-grid .table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed; }
+  .enuo-grid .table thead {
+    width: calc( 100% - 1em); }
+  .enuo-grid .table td,
+  .enuo-grid .table th {
+    border-left: none;
+    border-top: none; }
 
 .enuo-grid .box-tool,
 .enuo-grid .box-footer {
   padding: 2px;
   min-height: 38px;
   border: 1px solid #ddd;
-  border-bottom: none;
   background: linear-gradient(to bottom, #f8f8f8 0%, #efefef 100%); }
 
 .enuo-grid .box-tool {

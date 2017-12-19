@@ -36,13 +36,13 @@
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th ng-if="config.pkid" style="width:10px;"><input type="checkbox" ng-model="checkAll" ng-click="fnCheckAll()"></th>
+                <th ng-if="config.pkid" class="check"><input type="checkbox" ng-model="checkAll" ng-click="fnCheckAll()"></th>
                 <th ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}">{{column.name}}</th>
             </tr>
         </thead>
         <tbody ng-style="contentStyle" ng-if="!config.loading && gridSource.length > 0">
             <tr ng-repeat="item in gridSource" ng-click="fnCheckItem(item)">
-                <td ng-if="config.pkid">
+                <td class="check" ng-if="config.pkid">
                     <input type="checkbox" ng-checked="fnItemChecked(item)">
                 </td>
                 <td ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}">

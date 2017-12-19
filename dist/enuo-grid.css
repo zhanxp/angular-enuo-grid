@@ -14,6 +14,9 @@
   .enuo-grid .table th {
     border-left: none;
     border-top: none; }
+  .enuo-grid .table td.check,
+  .enuo-grid .table th.check {
+    width: 30px; }
 
 .enuo-grid .box-tool,
 .enuo-grid .box-footer {

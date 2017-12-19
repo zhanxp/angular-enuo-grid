@@ -19,6 +19,10 @@
             border-left: none;
             border-top: none;
         }
+        td.check,
+        th.check {
+            width: 30px;
+        }
     }
     .box-tool,
     .box-footer {

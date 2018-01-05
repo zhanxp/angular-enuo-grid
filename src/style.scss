@@ -1,5 +1,12 @@
 .enuo-grid {
     .table {
+         ::-webkit-scrollbar {
+            width: 1em;
+            height: 1em;
+        }
+         ::-webkit-scrollbar-track {
+            background: #efefef;
+        }
         margin-bottom: 0;
         tbody {
             display: block;

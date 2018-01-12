@@ -8,6 +8,8 @@
     <meta name="renderer" content="webkit" />
     <title>enuo grid test</title>
     <link rel="stylesheet" href="https://v3.bootcss.com/dist/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.bootcss.com/admin-lte/2.3.8/css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
 </head>
 
 <body ng-app="app" ng-controller="TestController">
@@ -101,22 +103,22 @@
                     tool: {
                         items: [{
                             name: '添加',
-                            icon: 'ion-plus-round',
-                            cssClass: 'text-green',
+                            icon: 'glyphicon glyphicon-plus',
+                            cssClass: 'text-success',
                             click: function(selectItems) {
                                 $scope.fnShowFrom();
                             }
                         }, {
                             name: '删除',
-                            icon: 'ion-trash-a',
-                            cssClass: 'text-red',
+                            icon: 'glyphicon glyphicon-remove',
+                            cssClass: 'text-danger',
                             click: function(selectItems) {
                                 $scope.fnUpdateStatus(selectItems);
                             }
                         }, {
                             name: '刷新',
-                            icon: 'ion-loop',
-                            cssClass: 'text-light-blue',
+                            icon: 'glyphicon glyphicon-repeat',
+                            cssClass: 'text-info',
                             click: function(selectItems) {
                                 $scope.loadData();
                             }

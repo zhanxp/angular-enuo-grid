@@ -29,11 +29,11 @@ angular.module('enuo.grid')
                         }
 
                         if ($scope.column.template == 'add') {
-                            $elm.append("<a class='text-green text-link'><i class='ion-plus-round'></i> " + value + "</a>");
+                            $elm.append("<a class='text-success text-link'><i class='glyphicon glyphicon-plus'></i> " + value + "</a>");
                         } else if ($scope.column.template == 'edit') {
-                            $elm.append("<a class='text-light-blue text-link'><i class='ion-edit'></i> " + value + "</a>");
+                            $elm.append("<a class='text-light-primary text-link'><i class='glyphicon glyphicon-pencil'></i> " + value + "</a>");
                         } else if ($scope.column.template == 'delete') {
-                            $elm.append("<a class='text-red text-link'><i class='ion-trash-a'></i> " + value + "</a>");
+                            $elm.append("<a class='text-danger text-link'><i class='glyphicon glyphicon-remove'></i> " + value + "</a>");
                         } else if ($scope.column.template) {
                             $elm.append(getFunc($scope.column.template)(value, $scope.item));
                         } else {

@@ -1,5 +1,10 @@
 .enuo-grid .table {
   margin-bottom: 0; }
+  .enuo-grid .table ::-webkit-scrollbar {
+    width: 1em;
+    height: 1em; }
+  .enuo-grid .table ::-webkit-scrollbar-track {
+    background: #efefef; }
   .enuo-grid .table tbody {
     display: block;
     overflow-y: scroll; }

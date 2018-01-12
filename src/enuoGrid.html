@@ -1,9 +1,9 @@
 <div class="enuo-grid">
     <div class="box-tool clearfix">
         <div class="btn-group" ng-if="config.tool">
-            <button ng-repeat="item in config.tool.items" type="button" ng-click="item.click(selectedList)" class="btn btn-default" ng-class="item.cssClass">
+            <a ng-repeat="item in config.tool.items" ng-click="item.click(selectedList)" ng-class="item.cssClass" class="btn">
                 <i ng-class="item.icon"></i> {{item.name}}
-            </button>
+            </a>
         </div>
         <div class="pull-right" ng-if="config.query && config.query.items.length > 0">
             <form class="form-inline">

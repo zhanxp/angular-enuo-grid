@@ -54,7 +54,7 @@
     <script src="./dist/enuo-grid.js"></script>
     <script type="text/javascript">
         angular.module('app', ['enuo.grid'])
-            .controller("TestController", ['$scope', '$filter', function($scope, $filter) {
+            .controller("TestController", ['$scope', '$filter', '$compile', function($scope, $filter, $compile) {
                 $scope.list = [];
                 $scope.gridConfig = {
                     pkid: 'InfoID',
@@ -163,6 +163,10 @@
                     }]
                 };
 
+                $scope.fnAlert = function(v) {
+                    alert(v);
+                }
+
                 $scope.loadData = function(page) {
                     var query = {};
                     angular.forEach($scope.gridConfig.query.items, function(data, index, array) {
@@ -192,7 +196,7 @@
                 }
 
                 $scope.fnUpdateStatus = function(ids) {
-                    console.log("del " + ids.join(','));
+                    console.log("del " + JSON.stringify(ids));
                 };
 
                 $scope.fnShowFrom = function(item) {

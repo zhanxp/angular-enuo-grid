@@ -8,7 +8,7 @@ angular.module('enuo.grid')
                 column: "=",
                 item: "="
             },
-            template: '<span ng-click="click()"></span>',
+            template: '<span ng-click="click($event)"></span>',
             compile: function() {
                 return {
                     pre: function($scope, $elm, $attrs) {
@@ -41,7 +41,7 @@ angular.module('enuo.grid')
                         }
                     },
                     post: function($scope, $elm, $attrs) {
-                        $scope.click = function() {
+                        $scope.click = function($event) {
                             if ($scope.column.click) {
                                 var invoke;
                                 if (angular.isFunction($scope.column.click)) {
@@ -49,8 +49,9 @@ angular.module('enuo.grid')
                                 } else {
                                     invoke = eval("(" + $scope.column.click + ")");
                                 }
-                                invoke($scope.item[$scope.column.name], $scope.item);
+                                invoke($scope.item[$scope.column.name], $scope.item, $event);
                             }
+                            $event.stopPropagation();
                         }
                     }
                 }

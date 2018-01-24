@@ -1,7 +1,7 @@
 <div class="enuo-grid">
-    <div class="box-tool clearfix">
+    <div class="box-tool clearfix" ng-if="config.tool && config.query">
         <div class="btn-group" ng-if="config.tool">
-            <a ng-repeat="item in config.tool.items" ng-click="item.click(selectedList)" ng-class="item.cssClass" class="btn">
+            <a ng-repeat="item in config.tool.items" ng-click="item.click(config.selectedList)" ng-class="item.cssClass" class="btn">
                 <i ng-class="item.icon"></i> {{item.name}}
             </a>
         </div>
@@ -36,14 +36,16 @@
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th ng-if="config.pkid" class="check"><input type="checkbox" ng-model="checkAll" ng-click="fnCheckAll()"></th>
+                <th ng-if="config.pkid" class="check">
+                    <input type="checkbox" ng-checked="checkAll" ng-click="fnCheckAll()" />
+                </th>
                 <th ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}">{{column.name}}</th>
             </tr>
         </thead>
         <tbody ng-style="contentStyle" ng-if="!config.loading && gridSource.length > 0">
             <tr ng-repeat="item in gridSource" ng-click="fnCheckItem(item)">
                 <td class="check" ng-if="config.pkid">
-                    <input type="checkbox" ng-checked="fnItemChecked(item)">
+                    <input type="checkbox" ng-checked="fnItemChecked(item)" />
                 </td>
                 <td ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}">
                     <enuo-grid-cell column="column" item="item"></enuo-grid-cell>
@@ -52,20 +54,16 @@
         </tbody>
         <tbody ng-style="contentStyle" ng-if="!config.loading && gridSource.length <= 0">
             <tr>
-                <td ng-if="config.pkid">
-                    </id>
-                    <td colspan="{{config.columns.length }}">
-                        <empty-result></empty-result>
-                    </td>
+                <td colspan="{{columnsCount }}">
+                    <empty-result></empty-result>
+                </td>
             </tr>
         </tbody>
         <tbody ng-style="contentStyle" ng-if="config.loading">
             <tr>
-                <td ng-if="config.pkid">
-                    </id>
-                    <td colspan="{{config.columns.length }}">
-                        <empty-result em-style="loading"></empty-result>
-                    </td>
+                <td colspan="{{columnsCount }}">
+                    <empty-result em-style="loading"></empty-result>
+                </td>
             </tr>
         </tbody>
     </table>

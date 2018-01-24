@@ -23,6 +23,10 @@ angular.module('enuo.grid')
                 };
 
                 $scope.fnCheckIsAll = function() {
+                    if (!$scope.gridSource) {
+                        return false;
+                    }
+
                     var checkCount = $scope.gridSource.filter(function(data) {
                         return $scope.fnItemChecked(data);
                     }).length;

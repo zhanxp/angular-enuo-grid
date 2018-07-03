@@ -33,40 +33,42 @@
             </form>
         </div>
     </div>
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th ng-if="config.pkid" class="check">
-                    <input type="checkbox" ng-checked="checkAll" ng-click="fnCheckAll()" />
-                </th>
-                <th ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}">{{column.name}}</th>
-            </tr>
-        </thead>
-        <tbody ng-style="contentStyle" ng-if="!config.loading && gridSource.length > 0">
-            <tr ng-repeat="item in gridSource" ng-click="fnCheckItem(item)">
-                <td class="check" ng-if="config.pkid">
-                    <input type="checkbox" ng-checked="fnItemChecked(item)" />
-                </td>
-                <td ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}">
-                    <enuo-grid-cell column="column" item="item"></enuo-grid-cell>
-                </td>
-            </tr>
-        </tbody>
-        <tbody ng-style="contentStyle" ng-if="!config.loading && gridSource.length <= 0">
-            <tr>
-                <td colspan="{{columnsCount }}">
-                    <empty-result></empty-result>
-                </td>
-            </tr>
-        </tbody>
-        <tbody ng-style="contentStyle" ng-if="config.loading">
-            <tr>
-                <td colspan="{{columnsCount }}">
-                    <empty-result em-style="loading"></empty-result>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th ng-if="config.pkid" class="check">
+                        <input type="checkbox" ng-checked="checkAll" ng-click="fnCheckAll()" />
+                    </th>
+                    <th ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}">{{column.name}}</th>
+                </tr>
+            </thead>
+            <tbody ng-style="contentStyle" ng-if="!config.loading && gridSource.length > 0">
+                <tr ng-repeat="item in gridSource" ng-click="fnCheckItem(item)">
+                    <td class="check" ng-if="config.pkid">
+                        <input type="checkbox" ng-checked="fnItemChecked(item)" />
+                    </td>
+                    <td ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}">
+                        <enuo-grid-cell column="column" item="item"></enuo-grid-cell>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody ng-style="contentStyle" ng-if="!config.loading && gridSource.length <= 0">
+                <tr>
+                    <td colspan="{{columnsCount }}">
+                        <empty-result></empty-result>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody ng-style="contentStyle" ng-if="config.loading">
+                <tr>
+                    <td colspan="{{columnsCount }}">
+                        <empty-result em-style="loading"></empty-result>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="box-footer" ng-if="config.page">
         <paging page="config.page.pageIndex" class="pull-right paging" page-size="config.page.pageSize" total="config.page.total" paging-action="config.page.callback(page)" show-prev-next="true" show-first-last="true">
         </paging>

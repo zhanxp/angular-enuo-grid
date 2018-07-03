@@ -47,9 +47,9 @@
     </div>
     <!-- /.container -->
 
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://v3.bootcss.com/dist/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.5.3/angular.min.js"></script>
     <link rel="stylesheet" href="./dist/enuo-grid.css" />
     <script src="./dist/enuo-grid.js"></script>
     <script type="text/javascript">
@@ -81,6 +81,7 @@
                         items: [{
                             key: 'Status',
                             value: 1,
+
                         }, {
                             key: 'ClassID',
                             type: 'select',
@@ -126,18 +127,23 @@
                     },
                     columns: [{
                         name: '标题',
-                        key: 'Title'
+                        key: 'Title',
+                        width: 150,
                     }, {
                         name: 'NoKey',
+                        width: 150,
                     }, {
                         name: 'Empty',
-                        key: 'Empty'
+                        key: 'Empty',
+                        width: 150,
                     }, {
                         name: 'Null',
-                        key: 'Null'
+                        key: 'Null',
+                        width: 150,
                     }, {
                         name: '时间',
                         key: 'CreateDate',
+                        width: 150,
                         format: function(value) {
                             return $filter('date')(value, 'yyyy-MM-dd');
                         }
@@ -145,6 +151,7 @@
                         name: '修改',
                         width: '100px',
                         template: 'edit',
+                        width: 150,
                         click: function(value, item) {
                             $scope.fnShowFrom(item);
                         }
@@ -152,6 +159,7 @@
                         name: '删除',
                         width: '100px',
                         template: 'delete',
+                        width: 150,
                         format: function(value, item) {
                             return item.Status == 1 ? "删除" : "还原";
                         },

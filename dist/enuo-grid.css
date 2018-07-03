@@ -1,10 +1,21 @@
+.enuo-grid ::-webkit-scrollbar {
+  width: 0.75em;
+  height: 0.75em; }
+
+.enuo-grid ::-webkit-scrollbar-track {
+  background: #efefef;
+  border-radius: 0; }
+
+.enuo-grid ::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 0.3em; }
+
+.enuo-grid .table-responsive {
+  border-left: 1px solid #efefef;
+  border-right: 1px solid #efefef; }
+
 .enuo-grid .table {
   margin-bottom: 0; }
-  .enuo-grid .table ::-webkit-scrollbar {
-    width: 1em;
-    height: 1em; }
-  .enuo-grid .table ::-webkit-scrollbar-track {
-    background: #efefef; }
   .enuo-grid .table tbody {
     display: block;
     overflow-y: scroll; }
@@ -14,7 +25,7 @@
     width: 100%;
     table-layout: fixed; }
   .enuo-grid .table thead {
-    width: calc( 100% - 1em); }
+    width: calc( 100% - 0.75em); }
   .enuo-grid .table td,
   .enuo-grid .table th {
     border-left: none;

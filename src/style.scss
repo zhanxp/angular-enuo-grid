@@ -1,12 +1,21 @@
 .enuo-grid {
+     ::-webkit-scrollbar {
+        width: 0.75em;
+        height: 0.75em;
+    }
+     ::-webkit-scrollbar-track {
+        background: #efefef;
+        border-radius: 0;
+    }
+     ::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 0.3em;
+    }
+    .table-responsive {
+        border-left: 1px solid #efefef;
+        border-right: 1px solid #efefef;
+    }
     .table {
-         ::-webkit-scrollbar {
-            width: 1em;
-            height: 1em;
-        }
-         ::-webkit-scrollbar-track {
-            background: #efefef;
-        }
         margin-bottom: 0;
         tbody {
             display: block;
@@ -19,7 +28,7 @@
             table-layout: fixed;
         }
         thead {
-            width: calc( 100% - 1em)
+            width: calc( 100% - 0.75em)
         }
         td,
         th {

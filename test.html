@@ -72,6 +72,10 @@
                             $scope.loadData(page);
                         },
                     },
+                    onSort: function(value, lastSort) {
+                        console.log(value);
+                        console.log(lastSort);
+                    },
                     query: {
                         action: {
                             callback: function(query) {
@@ -129,9 +133,11 @@
                         name: '标题',
                         key: 'Title',
                         width: 150,
+                        isSort: true,
                     }, {
                         name: 'NoKey',
                         width: 150,
+                        isSort: true,
                     }, {
                         name: 'Empty',
                         key: 'Empty',

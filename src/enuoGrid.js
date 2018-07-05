@@ -85,6 +85,14 @@ angular.module('enuo.grid')
                     });
                     $scope.config.query.action.callback(query);
                 };
+                $scope.onSort = function(value, lastSort) {
+                    if (lastSort && value.key != lastSort.key){
+                        lastSort.sort = "";
+                    }
+                    $scope.config.lastSort = value;
+                    value.sort = !value.sort||value.sort=="asc"?"desc":"asc";
+                    $scope.config.onSort(value.key + " " + value.sort, value);
+                }
             }
         }
     });

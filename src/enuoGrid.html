@@ -40,7 +40,7 @@
                     <th ng-if="config.pkid" class="check">
                         <input type="checkbox" ng-checked="checkAll" ng-click="fnCheckAll()" />
                     </th>
-                    <th ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}">{{column.name}}</th>
+                    <th ng-repeat="column in config.columns" ng-style="{width:column.width?column.width:'auto'}" ng-click="!column.isSort||onSort(column, config.lastSort)" ng-class="{sort_both:(column.sort=='both'||!column.sort)&&column.isSort, sort_asc:column.sort=='asc'&&column.isSort, sort_desc:column.sort=='desc'&&column.isSort}">{{column.name}}</th>
                 </tr>
             </thead>
             <tbody ng-style="contentStyle" ng-if="!config.loading && gridSource.length > 0">

@@ -147,6 +147,20 @@
                         key: 'Null',
                         width: 150,
                     }, {
+                        name: 'ng-click',
+                        key: 'ng',
+                        width: 200,
+                        click: function(value, item, $event, index) {
+                            alert(index);
+                        },
+                        format: function(value, item) {
+                            //value
+                            //column
+                            //index
+                            //row
+                            return "<a ng-click='click($event,1)'>click1 {{row}}:{{index}}</a> | <a ng-click='click($event,2)'>{{ column.name }} {{ value }} </a>";
+                        }
+                    }, {
                         name: '时间',
                         key: 'CreateDate',
                         width: 150,
@@ -177,6 +191,14 @@
                     }]
                 };
 
+                $scope.fn1 = function() {
+                    alert('click 1');
+                }
+
+                $scope.fn2 = function() {
+                    alert('click 2');
+                }
+
                 $scope.fnAlert = function(v) {
                     alert(v);
                 }
@@ -200,6 +222,7 @@
                         item.Title = "Title " + id;
                         item.Empty = '';
                         item.Null = null;
+                        item.ng = i;
                         item.CreateDate = new Date();
                         item.Status = 1;
                         $scope.list.push(item);

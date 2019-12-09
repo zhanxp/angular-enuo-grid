@@ -68,4 +68,5 @@
 .enuo-grid .box-footer .paging {
   height: 34px; }
   .enuo-grid .box-footer .paging .pagination {
-    margin: 0; }
+    margin: 0;
+    margin-right: 50px; }

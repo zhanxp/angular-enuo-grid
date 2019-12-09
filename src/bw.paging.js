@@ -74,7 +74,7 @@ angular.module('enuo.grid').directive('paging', function() {
      * @param {object} attrs - Angular link attribute
      */
     function fieldLink(scope, el, attrs) {
-       console.log(scope);
+     
         // Hook in our watched items
         scope.$watchCollection('[page,pageSize,total,disabled]', function(newValue, oldValue) {
             //console.log("$watch:"+newValue);

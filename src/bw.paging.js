@@ -59,8 +59,10 @@ angular.module('enuo.grid').directive('paging', function() {
             textTitleFirst: '@',
             textTitleLast: '@',
             textTitleNext: '@',
-            textTitlePrev: '@'
+            textTitlePrev: '@',         
         }
+      
+     
     };
 
 
@@ -72,12 +74,17 @@ angular.module('enuo.grid').directive('paging', function() {
      * @param {object} attrs - Angular link attribute
      */
     function fieldLink(scope, el, attrs) {
-
+     
         // Hook in our watched items
         scope.$watchCollection('[page,pageSize,total,disabled]', function(newValue, oldValue) {
             //console.log("$watch:"+newValue);
             build(scope, attrs);
         }, true);
+        
+        scope.action=function(inputPage){
+            internalAction(scope,inputPage);
+        }
+       
     }
 
 
@@ -89,6 +96,7 @@ angular.module('enuo.grid').directive('paging', function() {
      * @param {object} attrs - Angular link attribute
      */
     function fieldTemplate(el, attrs) {
+       
         return '<ul data-ng-hide="Hide" data-ng-class="ulClass"> ' +
             '<li ' +
             'title="{{Item.title}}" ' +
@@ -101,10 +109,16 @@ angular.module('enuo.grid').directive('paging', function() {
             'data-ng-bind="Item.value">' +
             '</a> ' +
             '</li>' +
+            
+            '<span style="margin-left:5px">跳至<input class="form-control" style="margin-left:5px;margin-right:5px;width:40px;display:inline-block" ng-model="inputPage"   type="text"  />'+
+            '页</span>'+
+            '<a style="margin-left:5px" class="btn btn-primary" ng-click="action(inputPage)">go</a>'+
+           
+           
             '</ul>'
+            
     }
-
-
+     
     /**
      * Assign default scope values from settings
      * Feel free to tweak / fork these for your application
@@ -116,7 +130,7 @@ angular.module('enuo.grid').directive('paging', function() {
 
         scope.List = [];
         scope.Hide = false;
-
+        
         scope.page = parseInt(scope.page) || 1;
         scope.total = parseInt(scope.total) || 0;
         scope.adjacent = parseInt(scope.adjacent) || 2;
@@ -205,7 +219,7 @@ angular.module('enuo.grid').directive('paging', function() {
      * @param {int} page - The current page of interest
      */
     function internalAction(scope, page) {
-
+         
         // Block clicks we try to load the active page
         if (scope.page == page) {
             return;
@@ -328,6 +342,7 @@ angular.module('enuo.grid').directive('paging', function() {
         // Add alpha items
         if (alpha) {
             var alphaItem = buildItem(alpha, disabled);
+            
             scope.List.push(alphaItem);
         }
 

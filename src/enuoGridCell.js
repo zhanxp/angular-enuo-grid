@@ -10,7 +10,7 @@ angular.module('enuo.grid')
                 index: "=",
                 row: "="
             },
-            template: '<span ng-click="click($event)" bind-html-compile="content"></span>',
+            template: '<span ng-click="click($event)"><span ng-if="html" bind-html-compile="content"></span><span ng-if="!html" ng-bind="content" ></span></span>',
             compile: function() {
                 return {
                     pre: function($scope, $elm, $attrs) {
@@ -45,7 +45,7 @@ angular.module('enuo.grid')
                         } else {
 
                         }
-
+                        $scope.html = $scope.column.html || $scope.column.format || $scope.column.template;
                         $scope.content = content;
                     },
                     post: function($scope, $elm, $attrs) {

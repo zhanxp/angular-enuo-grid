@@ -133,6 +133,7 @@
                         name: '标题',
                         key: 'Title',
                         width: 150,
+                        html: true,
                         isSort: true,
                     }, {
                         name: 'NoKey',
@@ -219,7 +220,7 @@
                         var id = (page - 1) * 10 + i;
                         var item = {};
                         item.InfoID = id;
-                        item.Title = "Title " + id;
+                        item.Title = "<strong> Title </strong> " + id;
                         item.Empty = '';
                         item.Null = null;
                         item.ng = i;
